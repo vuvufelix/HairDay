@@ -121,3 +121,36 @@ section {
         }
     }
 }
+
+@media screen and (max-width: 700px) {
+    section {
+        padding: 2%;
+
+        .title {
+            font-size: 0.8rem;
+        }
+
+        .second-title {
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+
+        .legend-instruction {
+            font-size: 0.7rem;
+        }
+
+        form {
+            .label-title {
+                font-size: 0.7rem;
+            }
+
+            .span-title {
+                font-size: 0.7rem;
+            }
+
+            button {
+                font-size: 0.7rem;
+            }
+        }
+    }
+}
