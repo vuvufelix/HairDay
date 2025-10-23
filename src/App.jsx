@@ -1,12 +1,12 @@
 import Section from "./components/Section"
-import Main from "./components/Main"
+import PrincipalContainer from "./components/PrincipalContainer"
 import "./App.css"
 
 function App() {
   return (
     <div className="app-container">
       <Section/>
-      <Main/>
+      <PrincipalContainer/>
     </div>
   )
 }

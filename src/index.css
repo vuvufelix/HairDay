@@ -7,7 +7,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+:root {
+  --color-default: yellow;
+}
+
 body {
-  background-color: black;
-  color: #fff;
+  background-color: var(--color-default);
 }

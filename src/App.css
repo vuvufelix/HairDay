@@ -1,4 +1,15 @@
 .app-container {
   position: relative;
   display: flex;
+  min-height: 100vh;
+
+  section {
+    width: 30%;
+    min-height: 100%;
+  }
+
+  main {
+    flex: 1;
+    min-height: 100%;
+  }
 }
