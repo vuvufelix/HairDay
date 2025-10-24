@@ -1,0 +1,25 @@
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 2rem;
+
+        .time {
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .name {
+            font-size: 0.98rem;
+            color: blanchedalmond;
+        }
+    }
+
+    .icon-delete {
+        color: var(--color-default);
+        cursor: pointer;
+    }
+}
