@@ -26,7 +26,13 @@ function App() {
   const nameValue = useRef()
 
   function getTime(e) {
-    setTime(e)
+    setTime(e.target.innerHTML)
+    altData.setToggle(!altData.toggle)
+    if(altData.toggle) {
+      e.target.classList.add("toggle")
+    } else {
+      e.target.classList.remove("toggle")
+    }
   }
 
   function getDate(e) {
