@@ -6,9 +6,18 @@ import { FaCloudMoon } from "react-icons/fa6"
 
 import HairDay from "./hairDay/HairDay"
 
-const PrincipalContainer = ({ filterMoon, filterSum, filterStar }) => {
+import { useContext } from "react"
+import ToggleTimeContext from "../context/timeColor"
 
-    //console.log(filterMoon)
+const PrincipalContainer = () => {
+
+    const altData = useContext(ToggleTimeContext)
+
+    function filterAgend(data) {
+        let dataFilter = altData.themecolor.filter((agend) => agend.data === data)
+        console.log(dataFilter)
+        altData.setThemecolor(dataFilter)
+    }
 
     return (
         <main>
@@ -19,10 +28,8 @@ const PrincipalContainer = ({ filterMoon, filterSum, filterStar }) => {
                 </div>
                 <div className="header-option">
                     <CiCalendar className="icon-header"/>
-                    <select name="consult" id="consult">
-                        <option value="consult">FIDELCIO</option>
-                        <option value="consult">Magrelo</option>
-                        <option value="consult">NZUZI TERESA</option>
+                    <select name="consult" id="consult" onChange={(e) => filterAgend(e.target.value)}>
+                        {altData.themecolor.map((agend) => <option key={agend.id} value={agend.data}>{agend.data}</option>)}
                     </select>
                 </div>
             </header>
@@ -35,7 +42,18 @@ const PrincipalContainer = ({ filterMoon, filterSum, filterStar }) => {
                     <span>09h até 12h</span>
                 </div>
                 <ul>
-                    {filterMoon.map((agend) => <HairDay key={agend.id} time={agend.hora} name={agend.nome} id={agend.id}/>)}
+                    {
+                        altData.themecolor
+                        .filter((value) => value.periodo === "Manhã")
+                        .map((agend) =>  
+                            <HairDay 
+                                key={agend.id} 
+                                time={agend.hora} 
+                                name={agend.nome} 
+                                id={agend.id}
+                            />
+                        ) 
+                    }
                 </ul>
             </div>
 
@@ -48,7 +66,18 @@ const PrincipalContainer = ({ filterMoon, filterSum, filterStar }) => {
                     <span>13h até 18h</span>
                 </div>
                 <ul>
-                    {filterSum.map((agend) => <HairDay key={agend.id} time={agend.hora} name={agend.nome} id={agend.id}/>)}
+                    {
+                        altData.themecolor
+                        .filter((value) => value.periodo === "Tarde")
+                        .map((agend) =>  
+                            <HairDay 
+                                key={agend.id} 
+                                time={agend.hora} 
+                                name={agend.nome} 
+                                id={agend.id}
+                            />
+                        ) 
+                    }
                 </ul>
             </div>
 
@@ -61,7 +90,18 @@ const PrincipalContainer = ({ filterMoon, filterSum, filterStar }) => {
                     <span>19h até 21h</span>
                 </div>
                 <ul>
-                    {filterStar.map((agend) => <HairDay key={agend.id} time={agend.hora} name={agend.nome} id={agend.id}/>)}
+                    {
+                        altData.themecolor
+                        .filter((value) => value.periodo === "Noite")
+                        .map((agend) =>  
+                            <HairDay 
+                                key={agend.id} 
+                                time={agend.hora} 
+                                name={agend.nome} 
+                                id={agend.id}
+                            />
+                        )
+                    }
                 </ul>
             </div>
         </main>

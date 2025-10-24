@@ -3,18 +3,26 @@ import PrincipalContainer from "./components/PrincipalContainer"
 import "./App.css"
 import { useState, useRef, useEffect } from "react"
 
+import { useContext } from "react"
+import ToggleTimeContext from "./context/timeColor"
+
+function getInitialData() {
+    const saved = localStorage.getItem("dados")
+    // Se houver dados salvos, retorne eles. Caso contrário, retorne um array vazio.
+    return saved ? JSON.parse(saved) : []
+}
+
 function App() {
+
+  const altData = useContext(ToggleTimeContext)
 
   const [time, setTime] = useState("")
   const [date, setDate] = useState(null)
   const [name, setName] = useState("")
-  const [data, setData] = useState([])
+  const [data, setData] = useState(getInitialData)
 
-  const [moon, setMoon] = useState([])
-  const [sun, setSun] = useState([])
-  const [star, setStar] = useState([])
+  altData.setThemecolor(data)
 
-  const Increment = useRef(0)
   const nameValue = useRef()
 
   function getTime(e) {
@@ -34,50 +42,32 @@ function App() {
     if(!time || !date || !name) return
     setData((old) => {
       return [
+        ...old,
         {
-          id: Increment.current++,
+          id: Date.now(),
           periodo: time.slice(0, 2) < 13 ? "Manhã" : time.slice(0, 2) < 19 ? "Tarde" : "Noite",
           data: date,
           hora: time,
           nome: name
-        },
-        ...old
+        }
       ]
 
     })
-
     setName("")
     nameValue.current.value = ""
 
-    console.log(data)
+    //console.log(data)
   }
-
-  useEffect(() => {
-    if(localStorage.getItem("dados") !== null) {
-      setData(JSON.parse(localStorage.getItem("dados")))
-    }
-  }, [])
 
   useEffect(() => {
       localStorage.setItem("dados", JSON.stringify(data))
   }, [data])
 
-  function Moon() {
-    let dat = data.filter((agend) => agend.periodo === "Manhã")
-    setMoon(dat)
-  }
-
-  function Sun() {
-    let dat = data.filter((agend) => agend.periodo === "Tarde")
-    setSun(dat)
-  }
-
-  function Star() {
-    let dat = data.filter((agend) => agend.periodo === "Manhã")
-    setStar(dat)
-  }
-
-  console.log(moon)
+  useEffect(() => {
+    let deleted = data.filter((agend) => agend.id !== altData.remove_)
+    setData(deleted)
+    localStorage.setItem("dados", JSON.stringify(data))
+  }, [altData.remove_])
 
   return (
     <div className="app-container">
@@ -88,11 +78,7 @@ function App() {
         addInfo={addInformation}
         nameValue={nameValue}
       />
-      <PrincipalContainer 
-        filterMoon={moon} 
-        filterSum={sun} 
-        filterStar={star}
-      />
+      <PrincipalContainer />
     </div>
   )
 }
