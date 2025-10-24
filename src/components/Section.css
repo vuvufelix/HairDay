@@ -53,6 +53,12 @@ section {
                 color: var(--color-default);
                 text-indent: 0.8rem;
             }
+
+            input[type="date"]::-webkit-inner-spin-button,
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                width: 60%;
+                opacity: 0;
+            }
         }
 
         .span-title {

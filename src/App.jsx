@@ -3,13 +3,29 @@ import PrincipalContainer from "./components/PrincipalContainer"
 import "./App.css"
 import { useState, useRef, useEffect } from "react"
 
+import Toastify from 'toastify-js'
+
 import { useContext } from "react"
 import ToggleTimeContext from "./context/timeColor"
 
 function getInitialData() {
     const saved = localStorage.getItem("dados")
-    // Se houver dados salvos, retorne eles. Caso contrário, retorne um array vazio.
     return saved ? JSON.parse(saved) : []
+}
+
+function message(text, color) {
+  Toastify({ 
+    text : text, 
+    duration : 3000,
+    close : true, 
+    gravity : "top",
+    position : "left",
+    stopOnFocus : true,
+    style : { 
+      background : color,
+      padding: "0.6rem",
+    }
+  }).showToast();
 }
 
 function App() {
@@ -28,6 +44,8 @@ function App() {
   function getTime(e) {
     setTime(e.target.innerHTML)
     altData.setToggle(!altData.toggle)
+
+    Array.from(document.getElementsByClassName("toggle")).forEach(element => element.classList.remove("toggle"))
     if(altData.toggle) {
       e.target.classList.add("toggle")
     } else {
@@ -45,7 +63,14 @@ function App() {
 
   function addInformation(e) {
     e.preventDefault()
-    if(!time || !date || !name) return
+    if(!time || !date || !name) return message("Preencha todos os campos", "red")
+    
+    let vr = data.find((agend) => {
+      if(agend.hora === time && agend.data === date) return agend
+    })
+
+    if(vr) return message("Já existe agendamento neste horário para este dia", "red")
+
     setData((old) => {
       return [
         ...old,
@@ -59,6 +84,8 @@ function App() {
       ]
 
     })
+    message("Agendamento adicionado com sucesso!", "greenyellow")
+    document.getElementsByClassName("toggle")[0].classList.remove("toggle")
     setName("")
     nameValue.current.value = ""
 
