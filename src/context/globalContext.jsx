@@ -1,10 +1,10 @@
 import { createContext, useState } from "react"
 
-const ToggleTimeContext = createContext()
+const GlobalContext = createContext()
 
-export default ToggleTimeContext
+export default GlobalContext
 
-export const ToggleTimeProvider = ({ children }) => {
+export const GlobalProvider = ({ children }) => {
 
     const [themecolor, setThemecolor] = useState([])
     const [remove_, setRemove_] = useState(null)
@@ -13,7 +13,7 @@ export const ToggleTimeProvider = ({ children }) => {
     const [message, setMessage] = useState("")
 
     return (
-        <ToggleTimeContext.Provider 
+        <GlobalContext.Provider 
             value={
                 {   themecolor, 
                     setThemecolor, 
@@ -29,6 +29,6 @@ export const ToggleTimeProvider = ({ children }) => {
             }
         >
             {children}
-        </ToggleTimeContext.Provider>
+        </GlobalContext.Provider>
     )
 }

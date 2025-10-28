@@ -1,11 +1,11 @@
 import { FaTrashCan } from "react-icons/fa6";
 import "./HairDay.css"
 import { useContext } from "react"
-import ToggleTimeContext from "../../context/timeColor"
+import GlobalContext from "../../context/globalContext"
 
 const HairDay = ({ id, time, name }) => {
 
-    const altData = useContext(ToggleTimeContext)
+    const altData = useContext(GlobalContext)
 
     function getId(id_value) {
         altData.setRemove_(id_value)

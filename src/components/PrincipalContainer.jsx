@@ -2,12 +2,12 @@ import "./PrincipalContainer.css"
 import { CiCalendar } from "react-icons/ci";
 import HairDaySection from "./HairDaySection/HairDaySection"
 import { useContext, useState, useEffect} from "react"
-import ToggleTimeContext from "../context/timeColor"
-import Error from "./message/Error"
+import GlobalContext from "../context/globalContext"
+import Message from "./message/Message"
 
 const PrincipalContainer = () => {
 
-    const altData = useContext(ToggleTimeContext)
+    const altData = useContext(GlobalContext)
     const [morning, setMorning] = useState([])
     const [late, setLate] = useState([])
     const [nigth, setNigth] = useState([])
@@ -65,7 +65,7 @@ const PrincipalContainer = () => {
                 </div>
             </header>
 
-            {altData.error && <Error />}
+            {altData.error && <Message />}
 
             <HairDaySection 
                 periodo="Manhã" 

@@ -4,7 +4,7 @@ import "./App.css"
 import { useState, useRef, useEffect } from "react"
 
 import { useContext } from "react"
-import ToggleTimeContext from "./context/timeColor"
+import GlobalContext from "./context/globalContext"
 
 function getInitialData() {
   const saved = localStorage.getItem("dados")
@@ -13,7 +13,7 @@ function getInitialData() {
 
 function App() {
 
-  const altData = useContext(ToggleTimeContext)
+  const altData = useContext(GlobalContext)
 
   const [time, setTime] = useState("")
   const [date, setDate] = useState(null)
