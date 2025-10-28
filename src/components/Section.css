@@ -1,13 +1,14 @@
 section {
-    background-color: #000;
+    background-color: var(--section-background);
     color: #fff;
     padding: 4%;
-    position: relative;
+    position: fixed;
+
 
     .title {
         color: var(--color-default);
         font-size: 1.1rem;
-        background-color: gray;
+        background-color: #383838;
         position: absolute;
         padding: 0.8rem;
         border-radius: 0.4rem;
@@ -20,7 +21,7 @@ section {
     }
 
     .legend-instruction {
-        color: gray;
+        color: var(--legend-secondary);
         font-size: 0.8rem;
     }
 
@@ -48,15 +49,15 @@ section {
                 width: 100%;
                 padding: 0.4rem;
                 border-radius: 0.3rem;
-                border: 1px solid gray;
-                background-color: #000;
+                border: 1px solid var(--border-color);
+                background-color: var(--color-enside);
                 color: var(--color-default);
                 text-indent: 0.8rem;
             }
 
             input[type="date"]::-webkit-inner-spin-button,
             input[type="date"]::-webkit-calendar-picker-indicator {
-                width: 60%;
+                width: 40%;
                 opacity: 0;
             }
         }
@@ -72,7 +73,7 @@ section {
             .span-subtitle {
                 margin-top: 0.5rem;
                 font-size: 0.7rem;
-                color: gray;
+                color: var(--legend-secondary);
                 font-weight: bold;
                 display: block;
             }
@@ -101,10 +102,10 @@ section {
                 padding: 0.4rem;
                 border: none;
                 margin: 0.5rem 0 1.1rem 0;
-                border: 1px solid gray;
+                border: 1px solid var(--border-color);
                 border-radius: 0.3rem;
-                background-color: #000;
-                color: #fff;
+                background-color: var(--color-enside);
+                color: var(--text-color);
                 text-indent: 1.7rem;
             }
 
@@ -122,8 +123,19 @@ section {
             cursor: pointer;
 
             &:hover {
-                background-color: burlywood;
+                background-color: #ffff00;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 528px) {
+    section {
+        position: static;
+        
+        .title {
+            position: fixed;
+            z-index: 2;
         }
     }
 }

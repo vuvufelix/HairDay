@@ -6,9 +6,21 @@ import Time from "./timeButton/Time"
 
 const Section = ({getDate, timeselected, inputName, addInfo, nameValue}) => {
 
+    const times = [
+        [
+            ["09:00", "10:00", "11:00", "12:00"]
+        ],
+        [
+            ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"]
+        ],
+        [
+            ["19:00", "20:00", "21:00"]
+        ]
+    ]
+
     return (
         <section>
-            <h1 className="title">HairDay<FaScissors/></h1>
+            <h1 className="title">HairDay<FaScissors className="icon-cissors"/></h1>
             <h2 className="second-title">Agende um atendimento</h2>
             <small className="legend-instruction">Selecione data, hora e informe o nome de cliente para cirar agendamento</small>
 
@@ -22,25 +34,15 @@ const Section = ({getDate, timeselected, inputName, addInfo, nameValue}) => {
                 <div className="time-option">
                     <span className="span-subtitle">Manhã</span>
                     <div className="time-container">
-                        <Time text="09:00" selectTime={timeselected}/>
-                        <Time text="10:00" selectTime={timeselected}/>
-                        <Time text="11:00" selectTime={timeselected}/>
-                        <Time text="12:00" selectTime={timeselected}/>
+                        {times[0][0].map((time, index) => <Time key={index} text={time} selectTime={timeselected}/>)}
                     </div>
                     <span className="span-subtitle">Tarde</span>
                     <div className="time-container">
-                        <Time text="13:00" selectTime={timeselected}/>
-                        <Time text="14:00" selectTime={timeselected}/>
-                        <Time text="15:00" selectTime={timeselected}/>
-                        <Time text="16:00" selectTime={timeselected}/>
-                        <Time text="17:00" selectTime={timeselected}/>
-                        <Time text="18:00" selectTime={timeselected}/>                        
+                        {times[1][0].map((time, index) => <Time key={index} text={time} selectTime={timeselected}/>)}                   
                     </div>
                     <span className="span-subtitle">Noite</span>
                     <div className="time-container">
-                        <Time text="19:00" selectTime={timeselected}/>
-                        <Time text="20:00" selectTime={timeselected}/>
-                        <Time text="21:00" selectTime={timeselected}/>
+                        {times[2][0].map((time, index) => <Time key={index} text={time} selectTime={timeselected}/>)}
                     </div>
                 </div>
                 <span className="span-title">Cliente</span>

@@ -3,29 +3,12 @@ import PrincipalContainer from "./components/PrincipalContainer"
 import "./App.css"
 import { useState, useRef, useEffect } from "react"
 
-import Toastify from 'toastify-js'
-
 import { useContext } from "react"
 import ToggleTimeContext from "./context/timeColor"
 
 function getInitialData() {
-    const saved = localStorage.getItem("dados")
-    return saved ? JSON.parse(saved) : []
-}
-
-function message(text, color) {
-  Toastify({ 
-    text : text, 
-    duration : 3000,
-    close : true, 
-    gravity : "top",
-    position : "left",
-    stopOnFocus : true,
-    style : { 
-      background : color,
-      padding: "0.6rem",
-    }
-  }).showToast();
+  const saved = localStorage.getItem("dados")
+  return saved ? JSON.parse(saved) : []
 }
 
 function App() {
@@ -63,13 +46,27 @@ function App() {
 
   function addInformation(e) {
     e.preventDefault()
-    if(!time || !date || !name) return message("Preencha todos os campos", "red")
+    if(!time || !date || !name) {
+      // Message
+      altData.setError(true)
+      altData.setMessage("Selecione todos os campos por favor!.")
+      return setTimeout(() => {
+        altData.setError(false)
+      }, 2500)
+    }
     
     let vr = data.find((agend) => {
       if(agend.hora === time && agend.data === date) return agend
     })
 
-    if(vr) return message("Já existe agendamento neste horário para este dia", "red")
+    if(vr) {
+      // Message
+      altData.setError(true)
+      altData.setMessage("Já existe agendamento neste horário para este dia!.")
+      return setTimeout(() => {
+        altData.setError(false)
+      }, 2500)
+    }
 
     setData((old) => {
       return [
@@ -84,7 +81,14 @@ function App() {
       ]
 
     })
-    message("Agendamento adicionado com sucesso!", "greenyellow")
+
+    // Message
+    altData.setError(true)
+    altData.setMessage("Agendamento adicionado com sucesso!.")
+    setTimeout(() => {
+      altData.setError(false)
+    }, 2500)
+
     document.getElementsByClassName("toggle")[0].classList.remove("toggle")
     setName("")
     nameValue.current.value = ""

@@ -15,7 +15,8 @@ li {
 
         .name {
             font-size: 0.98rem;
-            color: blanchedalmond;
+            color: var(--legend-secondary);
+            font-weight: bold;
         }
     }
 
