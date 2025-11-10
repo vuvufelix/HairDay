@@ -20,7 +20,7 @@ function App() {
   const [name, setName] = useState("")
   const [data, setData] = useState(getInitialData)
 
-  altData.setThemecolor(data)
+  altData.setDataLocalStorage(data)
 
   const nameValue = useRef()
 
@@ -91,13 +91,14 @@ function App() {
 
     document.getElementsByClassName("toggle")[0].classList.remove("toggle")
     setName("")
+    setTime("")
     nameValue.current.value = ""
 
     //console.log(data)
   }
 
   useEffect(() => {
-      localStorage.setItem("dados", JSON.stringify(data))
+    localStorage.setItem("dados", JSON.stringify(data))
   }, [data])
 
   useEffect(() => {

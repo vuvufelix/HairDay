@@ -2,7 +2,7 @@
 
 O **HairDay** é uma aplicação web moderna e intuitiva, desenvolvida em React, focada em simplificar o agendamento de serviços de beleza (cortes de cabelo) e a gestão diária da agenda. Utiliza uma interface limpa e escura que facilita a visualização dos compromissos por período (Manhã, Tarde e Noite).
 
-![Logo imagem](./src/assets/screencapture-localhost-5173-2025-10-28-12_09_52.png)
+![Logo imagem](./src/assets/screencapture-localhost-5173-2025-11-10-11_51_47.png)
 
 ## ✨ Principais Funcionalidades
 

@@ -6,7 +6,7 @@ export default GlobalContext
 
 export const GlobalProvider = ({ children }) => {
 
-    const [themecolor, setThemecolor] = useState([])
+    const [dataLocalStorage, setDataLocalStorage] = useState([])
     const [remove_, setRemove_] = useState(null)
     const [toggle, setToggle] = useState(false)
     const [error, setError] = useState(false)
@@ -15,8 +15,8 @@ export const GlobalProvider = ({ children }) => {
     return (
         <GlobalContext.Provider 
             value={
-                {   themecolor, 
-                    setThemecolor, 
+                {   dataLocalStorage, 
+                    setDataLocalStorage, 
                     remove_, 
                     setRemove_, 
                     toggle, 
